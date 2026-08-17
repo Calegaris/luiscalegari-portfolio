@@ -80,7 +80,7 @@ export function ProjectHero() {
           </p>
 
           <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
-            {project.overview.scope}
+            {project.overview?.scope}
           </p>
         </div>
 

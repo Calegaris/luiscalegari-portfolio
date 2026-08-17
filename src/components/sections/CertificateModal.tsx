@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ZoomIn, ZoomOut, RotateCcw, ExternalLink } from "lucide-react";
+import { X, ZoomIn, ZoomOut, ExternalLink } from "lucide-react";
 import { CertificateItem } from "@/src/data/portfolioData";
 
 interface CertificateModalProps {
@@ -41,7 +41,6 @@ export function CertificateModal({ certificate, onClose }: CertificateModalProps
 
   const handleZoomIn = () => setScale((prev) => Math.min(prev + 0.5, 3));
   const handleZoomOut = () => setScale((prev) => Math.max(prev - 0.5, 1));
-  const handleResetZoom = () => setScale(1);
 
   return (
     <AnimatePresence>
@@ -97,15 +96,6 @@ export function CertificateModal({ certificate, onClose }: CertificateModalProps
                   title="Reducir zoom"
                 >
                   <ZoomOut className="w-4 h-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={handleResetZoom}
-                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
-                  aria-label="Restablecer zoom"
-                  title="Restablecer zoom"
-                >
-                  <RotateCcw className="w-4 h-4" />
                 </button>
                 <button
                   type="button"

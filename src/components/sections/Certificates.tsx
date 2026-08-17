@@ -3,21 +3,40 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Award, Filter, ZoomIn, ExternalLink } from "lucide-react";
+import { 
+  Award, 
+  Filter, 
+  ZoomIn, 
+  ExternalLink, 
+  ChevronDown, 
+  ChevronUp 
+} from "lucide-react";
 import { portfolioData, CertificateItem } from "@/src/data/portfolioData";
 import { CertificateModal } from "./CertificateModal";
+import { LinkedInIcon } from "@/src/components/icons/SocialIcons";
+
+const INITIAL_LIMIT = 6;
 
 export function Certificates() {
   const { certificates } = portfolioData;
   const [selectedEmitter, setSelectedEmitter] = useState<string>("all");
   const [selectedArea, setSelectedArea] = useState<string>("all");
+  const [showAll, setShowAll] = useState<boolean>(false);
   const [activeModalCert, setActiveModalCert] = useState<CertificateItem | null>(null);
 
-  const filteredCertificates = certificates.filter((cert) => {
+  const isFiltered = selectedEmitter !== "all" || selectedArea !== "all";
+
+  const allFilteredCertificates = certificates.filter((cert) => {
     const matchEmitter = selectedEmitter === "all" || cert.emitterKey === selectedEmitter;
     const matchArea = selectedArea === "all" || cert.areaKey === selectedArea;
     return matchEmitter && matchArea;
   });
+
+  const displayedCertificates = isFiltered || showAll 
+    ? allFilteredCertificates 
+    : allFilteredCertificates.slice(0, INITIAL_LIMIT);
+
+  const remainingCount = Math.max(0, allFilteredCertificates.length - INITIAL_LIMIT);
 
   return (
     <section
@@ -28,7 +47,7 @@ export function Certificates() {
       <div className="text-center sm:text-left mb-10 space-y-2">
         <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-sky-400">
           <Award className="w-4 h-4" />
-          <span>Validación Continua</span>
+          <span>Validación & Formación Continua</span>
         </div>
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
           Certificados & Logros
@@ -54,7 +73,10 @@ export function Certificates() {
             <select
               id="emitter-filter"
               value={selectedEmitter}
-              onChange={(e) => setSelectedEmitter(e.target.value)}
+              onChange={(e) => {
+                setSelectedEmitter(e.target.value);
+                setShowAll(true);
+              }}
               className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-200 border border-slate-700 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
             >
               <option value="all">Todos los emisores</option>
@@ -74,7 +96,10 @@ export function Certificates() {
             <select
               id="area-filter"
               value={selectedArea}
-              onChange={(e) => setSelectedArea(e.target.value)}
+              onChange={(e) => {
+                setSelectedArea(e.target.value);
+                setShowAll(true);
+              }}
               className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-200 border border-slate-700 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
             >
               <option value="all">Todas las áreas</option>
@@ -93,7 +118,7 @@ export function Certificates() {
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
       >
         <AnimatePresence>
-          {filteredCertificates.map((cert) => (
+          {displayedCertificates.map((cert) => (
             <motion.div
               layout
               key={cert.id}
@@ -163,6 +188,63 @@ export function Certificates() {
             </motion.div>
           ))}
         </AnimatePresence>
+      </motion.div>
+
+      {/* Show More / Show Less Toggle Button */}
+      {!isFiltered && remainingCount > 0 && (
+        <div className="mt-8 flex justify-center">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-200 bg-slate-900/80 hover:bg-slate-800 border border-slate-700 hover:border-sky-500/40 transition-all shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+          >
+            {showAll ? (
+              <>
+                <span>Mostrar menos</span>
+                <ChevronUp className="w-4 h-4 text-sky-400" />
+              </>
+            ) : (
+              <>
+                <span>Mostrar más certificados (+{remainingCount})</span>
+                <ChevronDown className="w-4 h-4 text-sky-400" />
+              </>
+            )}
+          </button>
+        </div>
+      )}
+
+      {/* Concise LinkedIn Call to Action Banner */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="mt-10 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-[#004182]/20 via-[#0077b5]/10 to-slate-900/70 border border-sky-500/20 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4"
+      >
+        <div className="flex items-center gap-3.5 text-center sm:text-left">
+          <div className="shrink-0 p-2.5 rounded-xl bg-[#0a66c2]/20 border border-[#0a66c2]/30 text-[#0a66c2]">
+            <LinkedInIcon className="w-6 h-6 text-[#0a66c2]" />
+          </div>
+
+          <div>
+            <h3 className="text-sm sm:text-base font-bold text-white">
+              ¿Buscás ver todas mis certificaciones y licencias?
+            </h3>
+            <p className="text-xs text-slate-400">
+              Explorá mi historial académico y formación continua completa en LinkedIn.
+            </p>
+          </div>
+        </div>
+
+        <a
+          href="https://www.linkedin.com/in/luis-angel-calegari/details/certifications/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-white bg-[#0a66c2] hover:bg-[#004182] border border-[#0a66c2]/50 shadow-md hover:-translate-y-0.5 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+          aria-label="Ver todas las certificaciones en LinkedIn"
+        >
+          <span>Ver todas en LinkedIn</span>
+          <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+        </a>
       </motion.div>
 
       {/* Interactive Modal */}

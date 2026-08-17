@@ -20,6 +20,8 @@ export function ArchitectureTier() {
   const project = portfolioData.projects.find((p) => p.slug === "gogym") || portfolioData.projects[0];
   const { architecture } = project;
 
+  if (!architecture) return null;
+
   const getTierIcon = (index: number) => {
     switch (index) {
       case 0:
