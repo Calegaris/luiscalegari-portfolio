@@ -13,6 +13,7 @@ export interface EducationItem {
   status: string;
   subjectsCompleted: string;
   gpa: string;
+  programUrl?: string;
 }
 
 export interface SkillItem {
@@ -132,11 +133,11 @@ export const portfolioData: PortfolioData = {
   personalInfo: {
     name: "Luis Calegari",
     fullName: "Luis Ángel Calegari",
-    role: "Desarrollador Backend",
-    specialization: "Java Spring Boot | NestJS | Cloud Enthusiast",
+    role: "Desarrollador Full Stack",
+    specialization: "Java (Spring Boot) | NestJS & Node.js | React / Next.js | Cloud",
     bioParagraphs: [
-      "Soy Desarrollador Backend y estudiante de la Licenciatura en Informática y Tecnicatura Universitaria en Tecnologías Web en la Universidad Nacional del Oeste. Mi especialidad es la construcción de APIs RESTful robustas y escalables, dominando tanto el ecosistema de Java (Spring Boot) como el de Node.js (NestJS). Complemento mi perfil de desarrollo con conocimientos en infraestructura cloud (Oracle Cloud Certified) y bases de datos SQL y NoSQL.",
-      "Me caracterizo por la atención al detalle en la calidad del código. Disfruto del trabajo en equipo y tengo facilidad para adaptarme a nuevos desafíos técnicos. Actualmente, busco una oportunidad profesional donde pueda aportar valor desde el primer día, aplicando mis conocimientos en arquitectura de software y despliegue de aplicaciones."
+      "Soy Desarrollador Full Stack y estudiante de la Licenciatura en Informática y Tecnicatura Universitaria en Tecnologías Web en la Universidad Nacional del Oeste. Mi especialidad es la construcción de APIs RESTful robustas y escalables, dominando tanto el ecosistema de Java (Spring Boot) como el de Node.js (NestJS). Complemento mi perfil de desarrollo con conocimientos en infraestructura cloud (Oracle Cloud Certified) y bases de datos SQL y NoSQL.",
+      "Me enfoco en la calidad del código mediante la implementación de pruebas automatizadas (testing) y patrones de diseño limpios. Cuento también con experiencia práctica en el frontend (React, Next.js y Tailwind CSS), logrando autonomía para resolver flujos de trabajo completos. Busco integrarme a un equipo profesional donde pueda aplicar mis conocimientos y seguir aprendiendo."
     ],
     location: "Moreno, Buenos Aires, Argentina",
     cvUrl: "/docs/CV_Luis_Angel_Calegari.pdf",
@@ -176,8 +177,9 @@ export const portfolioData: PortfolioData = {
       degree: "Licenciatura en Informática (2do/3er año)",
       period: "2022 - Actualidad",
       status: "En curso",
-      subjectsCompleted: "13/16 materias con final",
-      gpa: "8.62"
+      subjectsCompleted: "15/16 materias con final",
+      gpa: "8.64",
+      programUrl: "https://www.uno.edu.ar/index.php/carreras/66-licenciatura-en-informatica"
     },
     {
       id: "uno-tecnicatura",
@@ -185,8 +187,9 @@ export const portfolioData: PortfolioData = {
       degree: "Tecnicatura Universitaria en Tecnologías Web (2do/3er año)",
       period: "2025 - Actualidad",
       status: "En curso",
-      subjectsCompleted: "11/16 materias con final",
-      gpa: "8.73"
+      subjectsCompleted: "15/16 materias con final",
+      gpa: "8.69",
+      programUrl: "https://www.uno.edu.ar/oferta-academica/tecnicaturas/tec-univ-en-tecnologias-web.html"
     }
   ],
 
@@ -197,17 +200,23 @@ export const portfolioData: PortfolioData = {
         { name: "Java", icon: "devicon-java-plain" },
         { name: "Spring Boot", icon: "devicon-spring-plain", tooltip: "Ecosistema Spring Boot & Spring Data" },
         { name: "Node.js", icon: "devicon-nodejs-plain" },
+        { name: "Express", icon: "devicon-express-original", tooltip: "REST APIs & Middleware" },
         { name: "NestJS", icon: "devicon-nestjs-plain", tooltip: "Arquitectura modular & Decorators" },
+        { name: "Python", icon: "devicon-python-plain", tooltip: "Desarrollo backend & Scripts" },
+        { name: "FastAPI", icon: "devicon-fastapi-plain", tooltip: "APIs asíncronas de alto rendimiento" },
         { name: "TypeScript", icon: "devicon-typescript-plain" },
         { name: "JWT & Bcrypt", icon: "shield" }
       ]
     },
     {
-      category: "Bases de datos",
+      category: "Bases de datos & ORMs",
       skills: [
         { name: "MongoDB", icon: "devicon-mongodb-plain" },
+        { name: "Mongoose", icon: "devicon-mongodb-plain", tooltip: "ODM para Node.js & NestJS" },
         { name: "PostgreSQL", icon: "devicon-postgresql-plain" },
         { name: "MySQL", icon: "devicon-mysql-plain" },
+        { name: "Prisma", icon: "devicon-prisma-plain", tooltip: "ORM para Node.js & TypeScript" },
+        { name: "SQLAlchemy", icon: "devicon-sqlalchemy-plain", tooltip: "ORM para Python & FastAPI" },
         { name: "Oracle DB", icon: "devicon-oracle-plain", tooltip: "Oracle Cloud Infrastructure & DB" }
       ]
     },
@@ -224,11 +233,11 @@ export const portfolioData: PortfolioData = {
     {
       category: "Infraestructura & Herramientas",
       skills: [
+        { name: "Docker", icon: "devicon-docker-plain", tooltip: "Contenedores & Ambientes reproducibles" },
         { name: "Git", icon: "devicon-git-plain" },
         { name: "GitHub", icon: "devicon-github-original" },
         { name: "Render CI/CD", icon: "devicon-render-plain" },
         { name: "Postman", icon: "devicon-postman-plain" },
-        { name: "Figma", icon: "devicon-figma-plain" },
         { name: "Jira", icon: "devicon-jira-plain" },
         { name: "Trello", icon: "devicon-trello-plain" }
       ]

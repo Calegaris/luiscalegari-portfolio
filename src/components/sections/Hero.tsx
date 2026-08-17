@@ -4,10 +4,9 @@ import { motion } from "framer-motion";
 import { 
   FileText, 
   ArrowDown, 
-  Sparkles, 
   Server, 
   ShieldCheck, 
-  Database, 
+  Database,
   ExternalLink 
 } from "lucide-react";
 import { portfolioData } from "@/src/data/portfolioData";
@@ -47,10 +46,6 @@ export function Hero() {
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
           </span>
           <span className="text-slate-200">Disponible para nuevos desafíos</span>
-          <span className="text-slate-600">|</span>
-          <span className="text-sky-400 flex items-center gap-1 font-semibold">
-            <Sparkles className="w-3.5 h-3.5" /> Backend Engineer
-          </span>
         </motion.div>
 
         {/* Main Title & Headline */}
@@ -64,16 +59,13 @@ export function Hero() {
             Hola, soy{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-200 via-sky-400 to-blue-500">
               {personalInfo.name}
-            </span>{" "}
-            <span className="inline-block hover:animate-bounce cursor-default select-none" role="img" aria-label="saludo">
-              👋
             </span>
           </h1>
 
           <p className="text-xl sm:text-2xl lg:text-3xl font-medium text-slate-300 max-w-3xl mx-auto">
             Desarrollador{" "}
             <span className="text-sky-400 font-semibold px-2 py-0.5 rounded bg-sky-500/10 border border-sky-500/20">
-              Backend
+              Full Stack
             </span>{" "}
             especializado en APIs RESTful y arquitecturas escalables
           </p>
@@ -92,7 +84,7 @@ export function Hero() {
         >
           <div className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-900/60 border border-slate-800 text-slate-300">
             <Server className="w-3.5 h-3.5 text-sky-400" />
-            <span>Arquitectura Modular & DI</span>
+            <span>Inyección de Dependencias</span>
           </div>
           <div className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-900/60 border border-slate-800 text-slate-300">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
