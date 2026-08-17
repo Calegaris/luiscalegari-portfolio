@@ -72,39 +72,42 @@ export interface ProjectCaseStudy {
   status: string;
   duration: string;
   thumbnail: string;
+  category?: string;
+  featured?: boolean;
   repoUrl?: string;
+  githubUrl?: string;
   repoPublic: boolean;
   repoPrivateReason?: string;
   liveUrl?: string;
   technologies: string[];
   highlights: string[];
-  overview: {
+  overview?: {
     roleDescription: string;
     scope: string;
     mainAchievement: string;
   };
-  keyFeatures: {
+  keyFeatures?: {
     category: string;
     icon: string;
     items: string[];
   }[];
-  architecture: {
+  architecture?: {
     description: string;
     tiers: ArchitectureTier[];
   };
-  domainModel: {
+  domainModel?: {
     description: string;
     entities: DomainEntity[];
     relationships: string[];
   };
-  technicalDecisions: TechnicalDecision[];
-  demoItems: {
+  technicalDecisions?: TechnicalDecision[];
+  demoItems?: {
     title: string;
     description: string;
     image: string;
     type: 'image' | 'video';
   }[];
-  roadmap: {
+  roadmap?: {
     phase: string;
     title: string;
     items: string[];
@@ -331,6 +334,8 @@ export const portfolioData: PortfolioData = {
   projects: [
     {
       slug: "gogym",
+      featured: true,
+      category: "Plataforma SaaS & Backend",
       title: "GoGym: Plataforma Integral de Gestión de Gimnasios",
       tagline: "Arquitectura backend escalable con NestJS, autenticación RBAC y control de acceso en tiempo real por QR",
       shortDescription: "Sistema integral de gestión para gimnasios con arquitectura modular en NestJS, base de datos MongoDB Atlas, autenticación JWT con RBAC, sistema de Check-in/Check-out con validación dinámica QR y CI/CD en Render.",
@@ -618,6 +623,91 @@ export const portfolioData: PortfolioData = {
             "Event-driven architecture con colas de mensajes (RabbitMQ o Kafka)."
           ]
         }
+      ]
+    },
+    {
+      slug: "spring-ecommerce-api",
+      featured: false,
+      category: "Backend REST API",
+      title: "Spring Commerce API",
+      tagline: "API RESTful de comercio electrónico con autenticación JWT, Spring Data JPA y PostgreSQL",
+      shortDescription: "Backend escalable para gestión de órdenes de compra, control de inventario, pasarela de pagos simulada y documentación interactiva con Swagger/OpenAPI.",
+      role: "Desarrollador Backend",
+      status: "Completado",
+      duration: "1 mes",
+      thumbnail: "/images/portfolio-2.jpg",
+      repoPublic: true,
+      repoUrl: "https://github.com/Calegaris",
+      liveUrl: "https://github.com/Calegaris",
+      technologies: [
+        "Java 17",
+        "Spring Boot",
+        "Spring Security",
+        "PostgreSQL",
+        "Docker",
+        "Swagger / OpenAPI"
+      ],
+      highlights: [
+        "Arquitectura por capas (Controller, Service, Repository, DTOs).",
+        "Seguridad stateless con Spring Security 6 y tokens JWT.",
+        "Testing unitario con JUnit 5 y Mockito con alta cobertura.",
+        "Contenedor Docker para PostgreSQL y migraciones con Flyway."
+      ]
+    },
+    {
+      slug: "fastapi-analytics-hub",
+      featured: false,
+      category: "Microservicio & Data",
+      title: "FastAPI Analytics Hub",
+      tagline: "Microservicio asíncrono para ingesta y cálculo de métricas en tiempo real",
+      shortDescription: "Servicio de alta velocidad construido con Python y FastAPI para procesar logs de actividad, generar reportes analíticos y almacenar series temporales.",
+      role: "Desarrollador Backend",
+      status: "Completado",
+      duration: "3 semanas",
+      thumbnail: "/images/portfolio-2.jpg",
+      repoPublic: true,
+      repoUrl: "https://github.com/Calegaris",
+      technologies: [
+        "Python",
+        "FastAPI",
+        "SQLAlchemy",
+        "PostgreSQL",
+        "Pydantic V2",
+        "Docker"
+      ],
+      highlights: [
+        "Validación estricta de payloads en runtime con Pydantic V2.",
+        "Consultas asíncronas de alto rendimiento con AsyncPG y SQLAlchemy.",
+        "Documentación OpenAPI interactiva autogenerada en Swagger UI."
+      ]
+    },
+    {
+      slug: "taskflow-realtime",
+      featured: false,
+      category: "Full Stack SaaS",
+      title: "TaskFlow: Gestión de Equipos en Tiempo Real",
+      tagline: "Plataforma colaborativa de gestión de tareas con actualizaciones en vivo y tableros Kanban",
+      shortDescription: "Aplicación Full Stack con arquitectura desacoplada: backend modular en NestJS con WebSockets y frontend moderno en Next.js 16 con Tailwind CSS y persistencia en MongoDB.",
+      role: "Desarrollador Full Stack",
+      status: "Completado",
+      duration: "1 mes",
+      thumbnail: "/images/portfolio-2.jpg",
+      repoPublic: true,
+      repoUrl: "https://github.com/Calegaris",
+      liveUrl: "https://github.com/Calegaris",
+      technologies: [
+        "Next.js 16",
+        "React",
+        "NestJS",
+        "TypeScript",
+        "WebSockets",
+        "MongoDB",
+        "Tailwind CSS"
+      ],
+      highlights: [
+        "Comunicación bidireccional en tiempo real con WebSockets (Socket.io).",
+        "Tableros Kanban interactivos con drag & drop y persistencia inmediata.",
+        "Interfaz de usuario optimizada con Server Components y Client Components."
       ]
     }
   ]

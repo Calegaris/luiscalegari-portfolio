@@ -18,6 +18,8 @@ export function RoadmapSection() {
   const project = portfolioData.projects.find((p) => p.slug === "gogym") || portfolioData.projects[0];
   const { roadmap } = project;
 
+  if (!roadmap) return null;
+
   const getPhaseIcon = (index: number) => {
     switch (index) {
       case 0:
