@@ -25,8 +25,13 @@ import {
 import { portfolioData, ProjectCaseStudy } from "@/src/data/portfolioData";
 import { GitHubIcon } from "@/src/components/icons/SocialIcons";
 
+// Toggle flag para activar/desactivar temporalmente el proyecto destacado (GoGym)
+const SHOW_FEATURED_PROJECT = false;
+
 export function ProjectsGrid() {
-  const featuredProject = portfolioData.projects.find((p) => p.featured) || portfolioData.projects[0];
+  const featuredProject = SHOW_FEATURED_PROJECT
+    ? portfolioData.projects.find((p) => p.featured)
+    : null;
   const standardProjects = portfolioData.projects.filter((p) => !p.featured);
 
   // Category filter state
