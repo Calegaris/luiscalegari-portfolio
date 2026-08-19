@@ -152,7 +152,7 @@ export const portfolioData: PortfolioData = {
       "Me enfoco en la calidad del código mediante la implementación de pruebas automatizadas (testing) y patrones de diseño limpios. Cuento también con experiencia práctica en el frontend (React, Next.js y Tailwind CSS), logrando autonomía para resolver flujos de trabajo completos. Busco integrarme a un equipo profesional donde pueda aplicar mis conocimientos y seguir aprendiendo."
     ],
     location: "Moreno, Buenos Aires, Argentina",
-    cvUrl: "/docs/CV_Luis_Angel_Calegari.pdf",
+    cvUrl: "/docs/CV_Luis_Calegari.pdf",
     contactFormEndpoint: "https://formspree.io/f/xeogyarp",
     socials: [
       {
