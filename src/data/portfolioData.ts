@@ -328,15 +328,6 @@ export const portfolioData: PortfolioData = {
       areaKey: "backend",
       image: "/images/certificados/Luis Angel Calegari - Formación Principiante en Programación - Alura.pdf.jpg",
       credentialUrl: "https://app.aluracursos.com"
-    },
-    {
-      id: "alura-desarrollo-personal",
-      title: "Formación Desarrollo Personal G8",
-      issuer: "Alura Latam",
-      emitterKey: "alura-latam",
-      areaKey: "backend",
-      image: "/images/certificados/Luis Angel Calegari - Formación Desarrollo personal g8 - Alura.pdf.jpg",
-      credentialUrl: "https://app.aluracursos.com"
     }
   ],
 
