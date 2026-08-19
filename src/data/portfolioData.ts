@@ -13,6 +13,7 @@ export interface EducationItem {
   status: string;
   subjectsCompleted: string;
   gpa: string;
+  programUrl?: string;
 }
 
 export interface SkillItem {
@@ -71,39 +72,51 @@ export interface ProjectCaseStudy {
   status: string;
   duration: string;
   thumbnail: string;
+  category?: string;
+  featured?: boolean;
+  teamSize?: number;
+  filterCategories?: string[];
   repoUrl?: string;
+  githubUrl?: string;
+  frontendRepoUrl?: string;
+  videoUrl?: string;
+  videoPending?: boolean;
+  awardUrl?: string;
+  awardLabel?: string;
+  swaggerUrl?: string;
   repoPublic: boolean;
   repoPrivateReason?: string;
   liveUrl?: string;
+  livePending?: boolean;
   technologies: string[];
   highlights: string[];
-  overview: {
+  overview?: {
     roleDescription: string;
     scope: string;
     mainAchievement: string;
   };
-  keyFeatures: {
+  keyFeatures?: {
     category: string;
     icon: string;
     items: string[];
   }[];
-  architecture: {
+  architecture?: {
     description: string;
     tiers: ArchitectureTier[];
   };
-  domainModel: {
+  domainModel?: {
     description: string;
     entities: DomainEntity[];
     relationships: string[];
   };
-  technicalDecisions: TechnicalDecision[];
-  demoItems: {
+  technicalDecisions?: TechnicalDecision[];
+  demoItems?: {
     title: string;
     description: string;
     image: string;
     type: 'image' | 'video';
   }[];
-  roadmap: {
+  roadmap?: {
     phase: string;
     title: string;
     items: string[];
@@ -132,14 +145,14 @@ export const portfolioData: PortfolioData = {
   personalInfo: {
     name: "Luis Calegari",
     fullName: "Luis Ángel Calegari",
-    role: "Desarrollador Backend",
-    specialization: "Java Spring Boot | NestJS | Cloud Enthusiast",
+    role: "Desarrollador Full Stack",
+    specialization: "Java (Spring Boot) | NestJS & Node.js | React / Next.js | Cloud",
     bioParagraphs: [
-      "Soy Desarrollador Backend y estudiante de la Licenciatura en Informática y Tecnicatura Universitaria en Tecnologías Web en la Universidad Nacional del Oeste. Mi especialidad es la construcción de APIs RESTful robustas y escalables, dominando tanto el ecosistema de Java (Spring Boot) como el de Node.js (NestJS). Complemento mi perfil de desarrollo con conocimientos en infraestructura cloud (Oracle Cloud Certified) y bases de datos SQL y NoSQL.",
-      "Me caracterizo por la atención al detalle en la calidad del código. Disfruto del trabajo en equipo y tengo facilidad para adaptarme a nuevos desafíos técnicos. Actualmente, busco una oportunidad profesional donde pueda aportar valor desde el primer día, aplicando mis conocimientos en arquitectura de software y despliegue de aplicaciones."
+      "Soy Desarrollador Full Stack y estudiante de la Licenciatura en Informática y Tecnicatura Universitaria en Tecnologías Web en la Universidad Nacional del Oeste. Mi especialidad es la construcción de APIs RESTful robustas y escalables, dominando tanto el ecosistema de Java (Spring Boot) como el de Node.js (NestJS). Complemento mi perfil de desarrollo con conocimientos en infraestructura cloud (Oracle Cloud Certified) y bases de datos SQL y NoSQL.",
+      "Me enfoco en la calidad del código mediante la implementación de pruebas automatizadas (testing) y patrones de diseño limpios. Cuento también con experiencia práctica en el frontend (React, Next.js y Tailwind CSS), logrando autonomía para resolver flujos de trabajo completos. Busco integrarme a un equipo profesional donde pueda aplicar mis conocimientos y seguir aprendiendo."
     ],
     location: "Moreno, Buenos Aires, Argentina",
-    cvUrl: "/docs/CV_Luis_Angel_Calegari.pdf",
+    cvUrl: "/docs/CV_Luis_Calegari.pdf",
     contactFormEndpoint: "https://formspree.io/f/xeogyarp",
     socials: [
       {
@@ -176,8 +189,9 @@ export const portfolioData: PortfolioData = {
       degree: "Licenciatura en Informática (2do/3er año)",
       period: "2022 - Actualidad",
       status: "En curso",
-      subjectsCompleted: "13/16 materias con final",
-      gpa: "8.62"
+      subjectsCompleted: "15/16 materias con final",
+      gpa: "8.64",
+      programUrl: "https://www.uno.edu.ar/index.php/carreras/66-licenciatura-en-informatica"
     },
     {
       id: "uno-tecnicatura",
@@ -185,8 +199,9 @@ export const portfolioData: PortfolioData = {
       degree: "Tecnicatura Universitaria en Tecnologías Web (2do/3er año)",
       period: "2025 - Actualidad",
       status: "En curso",
-      subjectsCompleted: "11/16 materias con final",
-      gpa: "8.73"
+      subjectsCompleted: "15/16 materias con final",
+      gpa: "8.69",
+      programUrl: "https://www.uno.edu.ar/oferta-academica/tecnicaturas/tec-univ-en-tecnologias-web.html"
     }
   ],
 
@@ -197,17 +212,23 @@ export const portfolioData: PortfolioData = {
         { name: "Java", icon: "devicon-java-plain" },
         { name: "Spring Boot", icon: "devicon-spring-plain", tooltip: "Ecosistema Spring Boot & Spring Data" },
         { name: "Node.js", icon: "devicon-nodejs-plain" },
+        { name: "Express", icon: "devicon-express-original", tooltip: "REST APIs & Middleware" },
         { name: "NestJS", icon: "devicon-nestjs-plain", tooltip: "Arquitectura modular & Decorators" },
+        { name: "Python", icon: "devicon-python-plain", tooltip: "Desarrollo backend & Scripts" },
+        { name: "FastAPI", icon: "devicon-fastapi-plain", tooltip: "APIs asíncronas de alto rendimiento" },
         { name: "TypeScript", icon: "devicon-typescript-plain" },
         { name: "JWT & Bcrypt", icon: "shield" }
       ]
     },
     {
-      category: "Bases de datos",
+      category: "Bases de datos & ORMs",
       skills: [
         { name: "MongoDB", icon: "devicon-mongodb-plain" },
+        { name: "Mongoose", icon: "devicon-mongodb-plain", tooltip: "ODM para Node.js & NestJS" },
         { name: "PostgreSQL", icon: "devicon-postgresql-plain" },
         { name: "MySQL", icon: "devicon-mysql-plain" },
+        { name: "Prisma", icon: "devicon-prisma-plain", tooltip: "ORM para Node.js & TypeScript" },
+        { name: "SQLAlchemy", icon: "devicon-sqlalchemy-plain", tooltip: "ORM para Python & FastAPI" },
         { name: "Oracle DB", icon: "devicon-oracle-plain", tooltip: "Oracle Cloud Infrastructure & DB" }
       ]
     },
@@ -224,11 +245,11 @@ export const portfolioData: PortfolioData = {
     {
       category: "Infraestructura & Herramientas",
       skills: [
+        { name: "Docker", icon: "devicon-docker-plain", tooltip: "Contenedores & Ambientes reproducibles" },
         { name: "Git", icon: "devicon-git-plain" },
         { name: "GitHub", icon: "devicon-github-original" },
         { name: "Render CI/CD", icon: "devicon-render-plain" },
         { name: "Postman", icon: "devicon-postman-plain" },
-        { name: "Figma", icon: "devicon-figma-plain" },
         { name: "Jira", icon: "devicon-jira-plain" },
         { name: "Trello", icon: "devicon-trello-plain" }
       ]
@@ -307,21 +328,16 @@ export const portfolioData: PortfolioData = {
       areaKey: "backend",
       image: "/images/certificados/Luis Angel Calegari - Formación Principiante en Programación - Alura.pdf.jpg",
       credentialUrl: "https://app.aluracursos.com"
-    },
-    {
-      id: "alura-desarrollo-personal",
-      title: "Formación Desarrollo Personal G8",
-      issuer: "Alura Latam",
-      emitterKey: "alura-latam",
-      areaKey: "backend",
-      image: "/images/certificados/Luis Angel Calegari - Formación Desarrollo personal g8 - Alura.pdf.jpg",
-      credentialUrl: "https://app.aluracursos.com"
     }
   ],
 
   projects: [
     {
       slug: "gogym",
+      featured: true,
+      category: "Plataforma SaaS & Backend",
+      filterCategories: ["Backend", "Full Stack"],
+      teamSize: 5,
       title: "GoGym: Plataforma Integral de Gestión de Gimnasios",
       tagline: "Arquitectura backend escalable con NestJS, autenticación RBAC y control de acceso en tiempo real por QR",
       shortDescription: "Sistema integral de gestión para gimnasios con arquitectura modular en NestJS, base de datos MongoDB Atlas, autenticación JWT con RBAC, sistema de Check-in/Check-out con validación dinámica QR y CI/CD en Render.",
@@ -609,6 +625,193 @@ export const portfolioData: PortfolioData = {
             "Event-driven architecture con colas de mensajes (RabbitMQ o Kafka)."
           ]
         }
+      ]
+    },
+    {
+      slug: "flight-on-time",
+      featured: false,
+      category: "Backend & ML",
+      filterCategories: ["Backend", "Full Stack"],
+      teamSize: 11,
+      title: "Flight On Time: Predicción con IA",
+      tagline: "API REST resiliente en Spring Boot 3, Java 21, integración con Machine Learning y despliegue OCI",
+      shortDescription: "API REST distribuida en Spring Boot 3 y Java 21 para estimar retrasos de vuelos en tiempo real mediante Machine Learning, desplegada en Oracle Cloud (OCI).",
+      role: "Desarrollador Backend",
+      status: "Completado · Hackathon",
+      duration: "1 mes",
+      thumbnail: "/images/projects/flight-on-time.png",
+      repoPublic: true,
+      repoUrl: "https://github.com/Harol-Medina/Prediccion-Retrasos-Vuelos-Back-End",
+      frontendRepoUrl: "https://github.com/Harol-Medina/Prediccion-Retrasos-Vuelos-Front-End",
+      liveUrl: "https://prediccion-retrasos-vuelos-front-en.vercel.app/",
+      videoUrl: "https://youtu.be/Gsmd-eRHd0I?si=giA5UBKywqN5u5Uj",
+      awardUrl: "https://nocountry.tech/hackathon-one-ii-latam/cmj3k1m4n00l9ke012qasg1y0",
+      awardLabel: "Hackathon ONE",
+      technologies: [
+        "Java 21",
+        "Spring Boot 3",
+        "Spring Cloud (OpenFeign)",
+        "Resilience4j",
+        "PostgreSQL",
+        "Oracle Cloud (OCI)",
+        "Docker"
+      ],
+      highlights: [
+        "Integración de ML con OpenFeign y Circuit Breakers (Resilience4j).",
+        "Control de tasa con Bucket4j y caché en memoria con Caffeine.",
+        "Despliegue seguro en OCI con Linux, Docker, proxy Nginx y Fail2ban."
+      ]
+    },
+    {
+      slug: "benchmark-dc-engine",
+      featured: false,
+      category: "Backend & IA Engine",
+      filterCategories: ["Backend", "Full Stack"],
+      teamSize: 8,
+      title: "BENCHMARK·DC: Madurez con IA",
+      tagline: "Motor asíncrono de benchmark para Data Centers con inferencias concurrentes de IA (Gemini/Claude) y FastAPI",
+      shortDescription: "Motor de benchmarking asíncrono para evaluar madurez en Data Centers, con inferencias concurrentes de IA (Gemini/Claude), K-anonimato y FastAPI.",
+      role: "Backend Lead",
+      status: "En desarrollo",
+      duration: "~1 mes",
+      thumbnail: "/images/projects/benchmark-dc-engine.png",
+      repoPublic: true,
+      repoUrl: "https://github.com/No-Country-simulation/S07-26-Team-21",
+      frontendRepoUrl: "https://github.com/No-Country-simulation/S07-26-Team-21-frontend",
+      videoPending: true,
+      livePending: true,
+      awardUrl: "https://companies.nocountry.tech/simulation/team/cmroa6bct009lms01xsim9xus",
+      awardLabel: "No Country",
+      technologies: [
+        "Python 3.12",
+        "FastAPI",
+        "PostgreSQL 16",
+        "SQLAlchemy (AsyncIO)",
+        "Google Gemini API",
+        "Pytest (+242 tests)",
+        "Docker"
+      ],
+      highlights: [
+        "Inferencia concurrente de LLM con asyncio.gather (Gemini, Claude, Ollama) y fallback.",
+        "Motor de percentiles con K-anonimato (k >= 3) y rebalanceo dinámico de datasets.",
+        "Caché en memoria con TTL de 24h, Rate Limiting y suite de +242 tests unitarios y E2E."
+      ]
+    },
+    {
+      slug: "coffee-cart-api",
+      featured: false,
+      category: "Backend REST API",
+      filterCategories: ["Backend"],
+      title: "Coffee Cart: REST API en Flask",
+      tagline: "Servidor backend RESTful modular en Python y Flask con Swagger OpenAPI 3.0 y Pytest",
+      shortDescription: "Servidor backend modular en Python y Flask para gestión de carritos de compras e inventario, con documentación OpenAPI 3.0 y suite de tests con Pytest.",
+      role: "Desarrollador Backend",
+      status: "Completado · Académico",
+      duration: "2 semanas",
+      thumbnail: "/images/projects/coffee-cart.png",
+      repoPublic: true,
+      repoUrl: "https://github.com/Calegaris/tp-spa-backend",
+      technologies: [
+        "Python 3",
+        "Flask",
+        "Pytest",
+        "Swagger / OpenAPI",
+        "Flask-CORS"
+      ],
+      highlights: [
+        "Arquitectura por capas desacoplada con Flask Blueprints, Services y Controllers.",
+        "Documentación interactiva de endpoints con Flasgger / Swagger UI (OpenAPI 3.0).",
+        "Suite completa de pruebas unitarias automatizadas con Pytest & Pytest-Flask."
+      ]
+    },
+    {
+      slug: "passfrases",
+      featured: false,
+      category: "Seguridad Web & Criptografía",
+      filterCategories: ["Full Stack", "Frontend"],
+      teamSize: 6,
+      title: "PassFrases: Generador Criptográfico",
+      tagline: "Arquitectura Zero-Knowledge con Web Crypto API, cifrado AES-GCM 256, PBKDF2 y migración a Next.js 16",
+      shortDescription: "Generador de credenciales Zero-Knowledge con Web Crypto API y cifrado AES-GCM 256, migrado a arquitectura moderna en Next.js 16 con App Router.",
+      role: "Frontend / Full-Stack Developer",
+      status: "En producción",
+      duration: "1 mes",
+      thumbnail: "/images/projects/passfrases-preview.png",
+      repoPublic: true,
+      repoUrl: "https://github.com/AlejoElPaisano/proyecto-3-integrarTEC",
+      liveUrl: "https://passfrases.vercel.app/",
+      technologies: [
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "Web Crypto API",
+        "AES-GCM 256",
+        "Zustand v5"
+      ],
+      highlights: [
+        "Criptografía 100% en cliente con CSPRNG y rejection sampling.",
+        "Cifrado AES-GCM 256 y derivación PBKDF2 (600k iteraciones OWASP).",
+        "Auditoría de entropía y transferencia segura offline vía código QR."
+      ]
+    },
+    {
+      slug: "form-forge",
+      featured: false,
+      category: "Frontend Web App & Testing",
+      filterCategories: ["Frontend"],
+      teamSize: 6,
+      title: "FormForge: Laboratorio de Validación",
+      tagline: "Constructor interactivo de formularios reactivos con motor dinámico Zod y arquitectura Feature-First",
+      shortDescription: "Laboratorio interactivo de formularios dinámicos con compilación reactiva de esquemas Zod en tiempo real y arquitectura Feature-First.",
+      role: "Testing, QA & Frontend Integrations",
+      status: "En producción",
+      duration: "1 mes",
+      thumbnail: "/images/projects/formforge-preview.png",
+      repoPublic: true,
+      repoUrl: "https://github.com/AlejoElPaisano/integrartec-segundo-proyecto",
+      liveUrl: "https://integrartec-segundo-proyecto.vercel.app/",
+      technologies: [
+        "React 19",
+        "TypeScript",
+        "Zod 4",
+        "React Hook Form",
+        "Zustand v5",
+        "Vitest",
+        "@dnd-kit"
+      ],
+      highlights: [
+        "Suite integral de +140 tests unitarios y de integración con Vitest.",
+        "Motor dinámico de esquemas Zod con React Hook Form.",
+        "Reordenamiento accesible Drag & Drop (@dnd-kit) y Zustand persistente."
+      ]
+    },
+    {
+      slug: "anti-procrastination-quest",
+      featured: false,
+      category: "Frontend Web App & Gamificación",
+      filterCategories: ["Frontend"],
+      teamSize: 2,
+      title: "Anti-Procrastination Quest: RPG",
+      tagline: "Gamificación de hábitos y tareas diarias con motor RPG, evolución de personajes y Vanilla JS modular",
+      shortDescription: "Herramienta de productividad que gamifica tareas y hábitos de estudio transformándolos en una aventura RPG retro con progresión por niveles.",
+      role: "Frontend Developer & Game Logic",
+      status: "Completado",
+      duration: "3 semanas",
+      thumbnail: "/images/projects/anti-procrastination-quest-preview.png",
+      repoPublic: true,
+      repoUrl: "https://github.com/Calegaris/Anti-procrastination-quest",
+      liveUrl: "https://calegaris.github.io/Anti-procrastination-quest/",
+      technologies: [
+        "JavaScript ES6+",
+        "HTML5 Semántico",
+        "CSS3 (Vanilla)",
+        "LocalStorage API",
+        "CSS Grid & Flexbox"
+      ],
+      highlights: [
+        "Motor RPG de experiencia matemática con 10 niveles y pasivas de clase.",
+        "Generador con Live Card Preview y cálculo de rarezas en tiempo real.",
+        "Persistencia robusta en LocalStorage con JavaScript ES6+ modular."
       ]
     }
   ]

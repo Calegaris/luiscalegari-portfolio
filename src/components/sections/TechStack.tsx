@@ -61,7 +61,7 @@ export function TechStack() {
           Habilidades Técnicas
         </h2>
         <p className="text-slate-400 text-sm sm:text-base max-w-2xl">
-          Especialización principal en arquitecturas backend robustas, persistencia eficiente y microservicios, complementado con conocimientos en frontend moderno e infraestructura cloud.
+          Especialización principal en diseño de APIs RESTful robustas, arquitecturas modulares y persistencia eficiente, complementado con desarrollo frontend moderno e infraestructura cloud.
         </p>
       </div>
 

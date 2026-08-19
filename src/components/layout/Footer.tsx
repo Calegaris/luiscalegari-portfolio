@@ -60,7 +60,7 @@ export function Footer() {
               </span>
             </Link>
             <p className={`text-sm max-w-md leading-relaxed ${isGoGymPage ? "text-zinc-400" : "text-slate-400"}`}>
-              Desarrollador Backend enfocado en arquitecturas escalables, APIs RESTful de alto rendimiento y soluciones cloud con Java (Spring Boot) y Node.js (NestJS).
+              Desarrollador Full Stack enfocado en arquitecturas backend escalables, APIs RESTful de alto rendimiento y soluciones modernas con Java (Spring Boot), Node.js (NestJS) y React/Next.js.
             </p>
             <div className={`flex items-center gap-2 text-xs font-medium ${
               isGoGymPage ? "text-orange-400/90" : "text-sky-400/90"
@@ -101,19 +101,12 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/projects/gogym" 
-                  className={`transition-colors flex items-center gap-1 font-medium ${
-                    isGoGymPage ? "text-[#ff8e26]" : "text-sky-400 hover:text-sky-300"
-                  }`}
-                >
+                <span className="flex items-center gap-1.5 text-slate-500 cursor-not-allowed select-none">
                   <span>GoGym Case Study</span>
-                  <span className={`text-[10px] px-1.5 py-0.5 rounded font-semibold ${
-                    isGoGymPage ? "bg-orange-500/20 text-orange-200 border border-orange-500/30" : "bg-sky-500/20 text-sky-300"
-                  }`}>
-                    Activo
+                  <span className="text-[10px] px-1.5 py-0.5 rounded font-semibold bg-slate-800 text-slate-400 border border-slate-700">
+                    Próximamente
                   </span>
-                </Link>
+                </span>
               </li>
               <li>
                 <Link 
