@@ -36,7 +36,9 @@ export function Certificates() {
     ? allFilteredCertificates 
     : allFilteredCertificates.slice(0, INITIAL_LIMIT);
 
-  const remainingCount = Math.max(0, allFilteredCertificates.length - INITIAL_LIMIT);
+  const remainingCount = isFiltered 
+    ? 0 
+    : Math.max(0, allFilteredCertificates.length - INITIAL_LIMIT + 1);
 
   return (
     <section
@@ -103,29 +105,29 @@ export function Certificates() {
               className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-200 border border-slate-700 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
             >
               <option value="all">Todas las áreas</option>
-              <option value="cloud">Cloud (OCI)</option>
-              <option value="backend">Back-End / Java</option>
+              <option value="cloud">Cloud Computing</option>
               <option value="ia">Inteligencia Artificial</option>
-              <option value="frontend">Front-End</option>
+              <option value="backend">Backend & Java</option>
+              <option value="frontend">Frontend & Web</option>
             </select>
           </div>
         </div>
       </div>
 
-      {/* Certificates Grid */}
-      <motion.div
-        layout
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
+      {/* Grid of Certificates & LinkedIn Card */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <AnimatePresence>
-          {displayedCertificates.map((cert) => (
+          {displayedCertificates.map((cert, index) => (
             <motion.div
-              layout
               key={cert.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{
+                duration: 0.4,
+                delay: index >= INITIAL_LIMIT ? (index - INITIAL_LIMIT) * 0.08 : 0,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
               className="group rounded-2xl bg-slate-900/60 border border-slate-800/90 hover:border-sky-500/40 p-4 flex flex-col justify-between backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-sky-950/20"
             >
               {/* Image Preview with click to open */}
@@ -187,8 +189,76 @@ export function Certificates() {
               </div>
             </motion.div>
           ))}
+
+          {/* LinkedIn Invitation Card in Grid with Heartbeat Glow */}
+          {(isFiltered || showAll) && (
+            <motion.div
+              key="linkedin-cta-card"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{
+                duration: 0.4,
+                delay: 0.16,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
+              className="group rounded-2xl bg-gradient-to-br from-[#0a66c2]/15 via-slate-900/80 to-slate-950 border border-sky-500/30 hover:border-[#0a66c2] p-4 flex flex-col justify-between backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#0a66c2]/20"
+            >
+              {/* LinkedIn Graphic Header */}
+              <a
+                href="https://www.linkedin.com/in/luis-angel-calegari/details/certifications/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative aspect-[16/11] w-full rounded-xl overflow-hidden bg-gradient-to-br from-[#0a66c2]/20 to-slate-950 border border-[#0a66c2]/30 group-hover:border-[#0a66c2]/60 transition-all flex flex-col items-center justify-center p-6 text-center cursor-pointer mb-4"
+                aria-label="Ver todas las certificaciones en LinkedIn"
+              >
+                {/* Heartbeat Pulse Glow Container */}
+                <div className="relative mb-3 flex items-center justify-center">
+                  <span className="absolute -inset-2 rounded-full bg-[#0a66c2]/40 blur-md animate-pulse" />
+                  <span className="absolute -inset-1 rounded-2xl bg-sky-400/30 animate-ping opacity-60 duration-1000" />
+                  <div className="relative p-3.5 rounded-2xl bg-gradient-to-br from-[#0a66c2]/30 to-[#004182]/60 border border-sky-400/50 text-sky-300 shadow-lg shadow-[#0a66c2]/50 group-hover:scale-110 group-hover:shadow-sky-400/50 transition-all duration-300">
+                    <LinkedInIcon className="w-8 h-8 text-sky-200 drop-shadow-[0_0_10px_rgba(56,189,248,0.9)]" />
+                  </div>
+                </div>
+
+                <span className="text-xs font-semibold text-sky-200">
+                  Historial Académico Completo
+                </span>
+              </a>
+
+              {/* Title & Info */}
+              <div className="space-y-2 flex-1">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-[#0a66c2]/20 text-sky-300 border border-[#0a66c2]/30">
+                    LinkedIn
+                  </span>
+                  <span className="text-xs text-slate-500">+ Licencias</span>
+                </div>
+
+                <h3 className="text-base font-bold text-white leading-snug group-hover:text-sky-300 transition-colors">
+                  ¿Buscás ver todas mis certificaciones?
+                </h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Explorá mi historial académico, cursos y licencias técnicas completas en mi perfil de LinkedIn.
+                </p>
+              </div>
+
+              {/* Action Link */}
+              <div className="pt-4 mt-2 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                <a
+                  href="https://www.linkedin.com/in/luis-angel-calegari/details/certifications/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sky-400 hover:text-sky-300 font-semibold inline-flex items-center gap-1.5 transition-colors"
+                >
+                  <span>Ver todas en LinkedIn</span>
+                  <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </a>
+              </div>
+            </motion.div>
+          )}
         </AnimatePresence>
-      </motion.div>
+      </div>
 
       {/* Show More / Show Less Toggle Button */}
       {!isFiltered && remainingCount > 0 && (
@@ -211,41 +281,6 @@ export function Certificates() {
           </button>
         </div>
       )}
-
-      {/* Concise LinkedIn Call to Action Banner */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="mt-10 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-[#004182]/20 via-[#0077b5]/10 to-slate-900/70 border border-sky-500/20 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4"
-      >
-        <div className="flex items-center gap-3.5 text-center sm:text-left">
-          <div className="shrink-0 p-2.5 rounded-xl bg-[#0a66c2]/20 border border-[#0a66c2]/30 text-[#0a66c2]">
-            <LinkedInIcon className="w-6 h-6 text-[#0a66c2]" />
-          </div>
-
-          <div>
-            <h3 className="text-sm sm:text-base font-bold text-white">
-              ¿Buscás ver todas mis certificaciones y licencias?
-            </h3>
-            <p className="text-xs text-slate-400">
-              Explorá mi historial académico y formación continua completa en LinkedIn.
-            </p>
-          </div>
-        </div>
-
-        <a
-          href="https://www.linkedin.com/in/luis-angel-calegari/details/certifications/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-white bg-[#0a66c2] hover:bg-[#004182] border border-[#0a66c2]/50 shadow-md hover:-translate-y-0.5 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
-          aria-label="Ver todas las certificaciones en LinkedIn"
-        >
-          <span>Ver todas en LinkedIn</span>
-          <ExternalLink className="w-3.5 h-3.5 opacity-80" />
-        </a>
-      </motion.div>
 
       {/* Interactive Modal */}
       <CertificateModal
