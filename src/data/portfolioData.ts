@@ -74,11 +74,20 @@ export interface ProjectCaseStudy {
   thumbnail: string;
   category?: string;
   featured?: boolean;
+  teamSize?: number;
+  filterCategories?: string[];
   repoUrl?: string;
   githubUrl?: string;
+  frontendRepoUrl?: string;
+  videoUrl?: string;
+  videoPending?: boolean;
+  awardUrl?: string;
+  awardLabel?: string;
+  swaggerUrl?: string;
   repoPublic: boolean;
   repoPrivateReason?: string;
   liveUrl?: string;
+  livePending?: boolean;
   technologies: string[];
   highlights: string[];
   overview?: {
@@ -336,6 +345,8 @@ export const portfolioData: PortfolioData = {
       slug: "gogym",
       featured: true,
       category: "Plataforma SaaS & Backend",
+      filterCategories: ["Backend", "Full Stack"],
+      teamSize: 5,
       title: "GoGym: Plataforma Integral de Gestión de Gimnasios",
       tagline: "Arquitectura backend escalable con NestJS, autenticación RBAC y control de acceso en tiempo real por QR",
       shortDescription: "Sistema integral de gestión para gimnasios con arquitectura modular en NestJS, base de datos MongoDB Atlas, autenticación JWT con RBAC, sistema de Check-in/Check-out con validación dinámica QR y CI/CD en Render.",
@@ -626,88 +637,190 @@ export const portfolioData: PortfolioData = {
       ]
     },
     {
-      slug: "spring-ecommerce-api",
+      slug: "flight-on-time",
       featured: false,
-      category: "Backend REST API",
-      title: "Spring Commerce API",
-      tagline: "API RESTful de comercio electrónico con autenticación JWT, Spring Data JPA y PostgreSQL",
-      shortDescription: "Backend escalable para gestión de órdenes de compra, control de inventario, pasarela de pagos simulada y documentación interactiva con Swagger/OpenAPI.",
+      category: "Backend & ML",
+      filterCategories: ["Backend", "Full Stack"],
+      teamSize: 11,
+      title: "Flight On Time: Predicción con IA",
+      tagline: "API REST resiliente en Spring Boot 3, Java 21, integración con Machine Learning y despliegue OCI",
+      shortDescription: "API REST distribuida en Spring Boot 3 y Java 21 para estimar retrasos de vuelos en tiempo real mediante Machine Learning, desplegada en Oracle Cloud (OCI).",
       role: "Desarrollador Backend",
-      status: "Completado",
+      status: "Completado · Hackathon",
       duration: "1 mes",
-      thumbnail: "/images/portfolio-2.jpg",
+      thumbnail: "/images/projects/flight-on-time.png",
       repoPublic: true,
-      repoUrl: "https://github.com/Calegaris",
-      liveUrl: "https://github.com/Calegaris",
+      repoUrl: "https://github.com/Harol-Medina/Prediccion-Retrasos-Vuelos-Back-End",
+      frontendRepoUrl: "https://github.com/Harol-Medina/Prediccion-Retrasos-Vuelos-Front-End",
+      liveUrl: "https://prediccion-retrasos-vuelos-front-en.vercel.app/",
+      videoUrl: "https://youtu.be/Gsmd-eRHd0I?si=giA5UBKywqN5u5Uj",
+      awardUrl: "https://nocountry.tech/hackathon-one-ii-latam/cmj3k1m4n00l9ke012qasg1y0",
+      awardLabel: "Hackathon ONE",
       technologies: [
-        "Java 17",
-        "Spring Boot",
-        "Spring Security",
+        "Java 21",
+        "Spring Boot 3",
+        "Spring Cloud (OpenFeign)",
+        "Resilience4j",
         "PostgreSQL",
-        "Docker",
-        "Swagger / OpenAPI"
-      ],
-      highlights: [
-        "Arquitectura por capas (Controller, Service, Repository, DTOs).",
-        "Seguridad stateless con Spring Security 6 y tokens JWT.",
-        "Testing unitario con JUnit 5 y Mockito con alta cobertura.",
-        "Contenedor Docker para PostgreSQL y migraciones con Flyway."
-      ]
-    },
-    {
-      slug: "fastapi-analytics-hub",
-      featured: false,
-      category: "Microservicio & Data",
-      title: "FastAPI Analytics Hub",
-      tagline: "Microservicio asíncrono para ingesta y cálculo de métricas en tiempo real",
-      shortDescription: "Servicio de alta velocidad construido con Python y FastAPI para procesar logs de actividad, generar reportes analíticos y almacenar series temporales.",
-      role: "Desarrollador Backend",
-      status: "Completado",
-      duration: "3 semanas",
-      thumbnail: "/images/portfolio-2.jpg",
-      repoPublic: true,
-      repoUrl: "https://github.com/Calegaris",
-      technologies: [
-        "Python",
-        "FastAPI",
-        "SQLAlchemy",
-        "PostgreSQL",
-        "Pydantic V2",
+        "Oracle Cloud (OCI)",
         "Docker"
       ],
       highlights: [
-        "Validación estricta de payloads en runtime con Pydantic V2.",
-        "Consultas asíncronas de alto rendimiento con AsyncPG y SQLAlchemy.",
-        "Documentación OpenAPI interactiva autogenerada en Swagger UI."
+        "Integración de ML con OpenFeign y Circuit Breakers (Resilience4j).",
+        "Control de tasa con Bucket4j y caché en memoria con Caffeine.",
+        "Despliegue seguro en OCI con Linux, Docker, proxy Nginx y Fail2ban."
       ]
     },
     {
-      slug: "taskflow-realtime",
+      slug: "benchmark-dc-engine",
       featured: false,
-      category: "Full Stack SaaS",
-      title: "TaskFlow: Gestión de Equipos en Tiempo Real",
-      tagline: "Plataforma colaborativa de gestión de tareas con actualizaciones en vivo y tableros Kanban",
-      shortDescription: "Aplicación Full Stack con arquitectura desacoplada: backend modular en NestJS con WebSockets y frontend moderno en Next.js 16 con Tailwind CSS y persistencia en MongoDB.",
-      role: "Desarrollador Full Stack",
-      status: "Completado",
-      duration: "1 mes",
-      thumbnail: "/images/portfolio-2.jpg",
+      category: "Backend & IA Engine",
+      filterCategories: ["Backend", "Full Stack"],
+      teamSize: 8,
+      title: "BENCHMARK·DC: Madurez con IA",
+      tagline: "Motor asíncrono de benchmark para Data Centers con inferencias concurrentes de IA (Gemini/Claude) y FastAPI",
+      shortDescription: "Motor de benchmarking asíncrono para evaluar madurez en Data Centers, con inferencias concurrentes de IA (Gemini/Claude), K-anonimato y FastAPI.",
+      role: "Backend Lead",
+      status: "En desarrollo",
+      duration: "~1 mes",
+      thumbnail: "/images/projects/benchmark-dc-engine.png",
       repoPublic: true,
-      repoUrl: "https://github.com/Calegaris",
-      liveUrl: "https://github.com/Calegaris",
+      repoUrl: "https://github.com/No-Country-simulation/S07-26-Team-21",
+      frontendRepoUrl: "https://github.com/No-Country-simulation/S07-26-Team-21-frontend",
+      videoPending: true,
+      livePending: true,
+      awardUrl: "https://companies.nocountry.tech/simulation/team/cmroa6bct009lms01xsim9xus",
+      awardLabel: "No Country",
       technologies: [
-        "Next.js 16",
-        "React",
-        "NestJS",
-        "TypeScript",
-        "WebSockets",
-        "MongoDB",
-        "Tailwind CSS"
+        "Python 3.12",
+        "FastAPI",
+        "PostgreSQL 16",
+        "SQLAlchemy (AsyncIO)",
+        "Google Gemini API",
+        "Pytest (+242 tests)",
+        "Docker"
       ],
       highlights: [
-        "Comunicación bidireccional en tiempo real con WebSockets (Socket.io).",
-        "Tableros Kanban interactivos con drag & drop y persistencia inmediata.",
-        "Interfaz de usuario optimizada con Server Components y Client Components."
+        "Inferencia concurrente de LLM con asyncio.gather (Gemini, Claude, Ollama) y fallback.",
+        "Motor de percentiles con K-anonimato (k >= 3) y rebalanceo dinámico de datasets.",
+        "Caché en memoria con TTL de 24h, Rate Limiting y suite de +242 tests unitarios y E2E."
+      ]
+    },
+    {
+      slug: "coffee-cart-api",
+      featured: false,
+      category: "Backend REST API",
+      filterCategories: ["Backend"],
+      title: "Coffee Cart: REST API en Flask",
+      tagline: "Servidor backend RESTful modular en Python y Flask con Swagger OpenAPI 3.0 y Pytest",
+      shortDescription: "Servidor backend modular en Python y Flask para gestión de carritos de compras e inventario, con documentación OpenAPI 3.0 y suite de tests con Pytest.",
+      role: "Desarrollador Backend",
+      status: "Completado · Académico",
+      duration: "2 semanas",
+      thumbnail: "/images/projects/coffee-cart.png",
+      repoPublic: true,
+      repoUrl: "https://github.com/Calegaris/tp-spa-backend",
+      technologies: [
+        "Python 3",
+        "Flask",
+        "Pytest",
+        "Swagger / OpenAPI",
+        "Flask-CORS"
+      ],
+      highlights: [
+        "Arquitectura por capas desacoplada con Flask Blueprints, Services y Controllers.",
+        "Documentación interactiva de endpoints con Flasgger / Swagger UI (OpenAPI 3.0).",
+        "Suite completa de pruebas unitarias automatizadas con Pytest & Pytest-Flask."
+      ]
+    },
+    {
+      slug: "passfrases",
+      featured: false,
+      category: "Seguridad Web & Criptografía",
+      filterCategories: ["Full Stack", "Frontend"],
+      teamSize: 6,
+      title: "PassFrases: Generador Criptográfico",
+      tagline: "Arquitectura Zero-Knowledge con Web Crypto API, cifrado AES-GCM 256, PBKDF2 y migración a Next.js 16",
+      shortDescription: "Generador de credenciales Zero-Knowledge con Web Crypto API y cifrado AES-GCM 256, migrado a arquitectura moderna en Next.js 16 con App Router.",
+      role: "Frontend / Full-Stack Developer",
+      status: "En producción",
+      duration: "1 mes",
+      thumbnail: "/images/projects/passfrases-preview.png",
+      repoPublic: true,
+      repoUrl: "https://github.com/AlejoElPaisano/proyecto-3-integrarTEC",
+      liveUrl: "https://passfrases.vercel.app/",
+      technologies: [
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "Web Crypto API",
+        "AES-GCM 256",
+        "Zustand v5"
+      ],
+      highlights: [
+        "Criptografía 100% en cliente con CSPRNG y rejection sampling.",
+        "Cifrado AES-GCM 256 y derivación PBKDF2 (600k iteraciones OWASP).",
+        "Auditoría de entropía y transferencia segura offline vía código QR."
+      ]
+    },
+    {
+      slug: "form-forge",
+      featured: false,
+      category: "Frontend Web App & Testing",
+      filterCategories: ["Frontend"],
+      teamSize: 6,
+      title: "FormForge: Laboratorio de Validación",
+      tagline: "Constructor interactivo de formularios reactivos con motor dinámico Zod y arquitectura Feature-First",
+      shortDescription: "Laboratorio interactivo de formularios dinámicos con compilación reactiva de esquemas Zod en tiempo real y arquitectura Feature-First.",
+      role: "Testing, QA & Frontend Integrations",
+      status: "En producción",
+      duration: "1 mes",
+      thumbnail: "/images/projects/formforge-preview.png",
+      repoPublic: true,
+      repoUrl: "https://github.com/AlejoElPaisano/integrartec-segundo-proyecto",
+      liveUrl: "https://integrartec-segundo-proyecto.vercel.app/",
+      technologies: [
+        "React 19",
+        "TypeScript",
+        "Zod 4",
+        "React Hook Form",
+        "Zustand v5",
+        "Vitest",
+        "@dnd-kit"
+      ],
+      highlights: [
+        "Suite integral de +140 tests unitarios y de integración con Vitest.",
+        "Motor dinámico de esquemas Zod con React Hook Form.",
+        "Reordenamiento accesible Drag & Drop (@dnd-kit) y Zustand persistente."
+      ]
+    },
+    {
+      slug: "anti-procrastination-quest",
+      featured: false,
+      category: "Frontend Web App & Gamificación",
+      filterCategories: ["Frontend"],
+      teamSize: 2,
+      title: "Anti-Procrastination Quest: RPG",
+      tagline: "Gamificación de hábitos y tareas diarias con motor RPG, evolución de personajes y Vanilla JS modular",
+      shortDescription: "Herramienta de productividad que gamifica tareas y hábitos de estudio transformándolos en una aventura RPG retro con progresión por niveles.",
+      role: "Frontend Developer & Game Logic",
+      status: "Completado",
+      duration: "3 semanas",
+      thumbnail: "/images/projects/anti-procrastination-quest-preview.png",
+      repoPublic: true,
+      repoUrl: "https://github.com/Calegaris/Anti-procrastination-quest",
+      liveUrl: "https://calegaris.github.io/Anti-procrastination-quest/",
+      technologies: [
+        "JavaScript ES6+",
+        "HTML5 Semántico",
+        "CSS3 (Vanilla)",
+        "LocalStorage API",
+        "CSS Grid & Flexbox"
+      ],
+      highlights: [
+        "Motor RPG de experiencia matemática con 10 niveles y pasivas de clase.",
+        "Generador con Live Card Preview y cálculo de rarezas en tiempo real.",
+        "Persistencia robusta en LocalStorage con JavaScript ES6+ modular."
       ]
     }
   ]
